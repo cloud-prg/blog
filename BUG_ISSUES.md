@@ -10,3 +10,5 @@
 - nest.js standalone打包后运行，发现好多文件路径404。在这个issues中找到了答案。 [https://github.com/vercel/next.js/issues/49283]
 - 解决方案：`I faced this issue today, I just found a workaround for this: copy .next/static to .next/standalone/.next/static`
 
+## Bug 4:
+- 本打算利用`husky`的`pre-push`来执行`docker`脚本的，但发现会有`git push`超时问题。因此只能把`docker`脚本放到`pre-commit`中执行。
