@@ -16,7 +16,7 @@ const apiMap = {
       let requestUrl: string = `${proxySuffix}/paper`
 
       if (searchValue) {
-        requestUrl += '/getPaperListPaginationBySearch'
+        requestUrl += '/getSearchPaperListPagination'
       } else if (label) {
         requestUrl += '/getPaperListPaginationByLabel'
       } else {
