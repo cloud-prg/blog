@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { defaultInstance } from './instance';
-import { proxySuffix } from './proxy';
+import { proxySuffix } from '#/setupProxy.js';
 import { jointResponse } from '@/utils/responseHandler';
 
 const booksInstance = axios.create({
@@ -9,7 +9,6 @@ const booksInstance = axios.create({
 });
 
 // booksInstance.interceptors.request(requestHandler)
-
 const apiMap = {
   async getPaginationPaperList(params: {
     type: string;
@@ -21,10 +20,14 @@ const apiMap = {
   },
 
   async getPaper(paperId: string) {
-    const res: jointResponse = await defaultInstance.get(
-      `${proxySuffix}/paper/getPaper/${paperId}`
-    );
-    return res;
+    try {
+      const res: jointResponse = await defaultInstance.get(
+        `${proxySuffix}/paper/getPaper/${paperId}`
+      );
+      return res;
+    } catch (err) {
+      // console.log(`=====error in getPaper====`, err)
+    }
   },
 
   async getCommentList(paperId: string) {

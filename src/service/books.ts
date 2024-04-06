@@ -1,6 +1,7 @@
 import { jointResponse } from '@/utils/responseHandler';
-import { baseInstance } from './instance';
+import { baseInstance, defaultInstance } from './instance';
 import { paginationDataSourceByLabelProps } from '@/type/books';
+import { proxySuffix } from '#/setupProxy';
 
 const apiMap = {
   async getPaperListByPage(params: {
@@ -9,28 +10,32 @@ const apiMap = {
     page: number;
     pageSize: number;
   }) {
-    const { label, searchValue } = params;
+    try {
+      const { label, searchValue } = params;
 
-    let requestUrl: string = ""
+      let requestUrl: string = `${proxySuffix}/paper`
 
-    if (searchValue) {
-      requestUrl = '/paper/getPaperListPaginationBySearch'
-    } else if (label) {
-      requestUrl = '/paper/getPaperListPaginationByLabel'
-    } else {
-      requestUrl = '/paper/getPaperListPagination/'
+      if (searchValue) {
+        requestUrl += '/getPaperListPaginationBySearch'
+      } else if (label) {
+        requestUrl += '/getPaperListPaginationByLabel'
+      } else {
+        requestUrl += '/getPaperListPagination/'
+      }
+
+      let res: jointResponse = await defaultInstance.post(requestUrl, params);
+
+      // if (label) {
+      //   const { items } = res.data as paginationDataSourceByLabelProps;
+      //   res.data.items = items.map((item) => {
+      //     return item.papers[0];
+      //   });
+      // }
+
+      return res;
+    } catch (error) {
+      console.log(`===error getPaperListByPage error`, error)
     }
-
-    let res: jointResponse = await baseInstance.post(requestUrl, params);
-
-    // if (label) {
-    //   const { items } = res.data as paginationDataSourceByLabelProps;
-    //   res.data.items = items.map((item) => {
-    //     return item.papers[0];
-    //   });
-    // }
-
-    return res;
   },
 };
 

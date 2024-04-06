@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { baseInstance, defaultInstance } from './instance';
-import { proxySuffix } from './proxy';
+import { proxySuffix } from '#/setupProxy.js';
 import { jointResponse } from '@/utils/responseHandler';
 
 const apiMap = {
@@ -11,7 +11,6 @@ const apiMap = {
     );
     return res;
   },
-
   async getCategories() {
     // const res = await baseInstance.get('/label/getCategories');
     const res: jointResponse = await defaultInstance.get(

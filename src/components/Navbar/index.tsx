@@ -56,10 +56,11 @@ const Navbar = () => {
         placeholder="搜索关键字..."
         onPressEnter={handleClick}
         suffix={
+          // @ts-ignore
           <SearchOutlined
             style={{ fontSize: '16px', cursor: 'pointer' }}
             onClick={handleClick}
-          />
+            />
         }
       />
     </div>

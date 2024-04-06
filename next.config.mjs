@@ -1,22 +1,18 @@
 /** @type {import('next').NextConfig} */
-const serverMap = {
-    dev: 'http://localhost:3002/api',
-    prod: 'http://localhost:3002/api',
-};
+import { proxySuffix } from './setupProxy.js'
 
 const nextConfig = {
     reactStrictMode: false,
+    output: 'standalone',
     async rewrites() {
-        const env = process.env.NODE_ENV === 'development' ? 'dev' : 'prod';
-
         return [
             {
                 source: '/dev/:path*',
-                destination: serverMap[env] + "/:path*",
+                destination: proxySuffix + "/:path*",
             },
             {
                 source: '/prod/:path*',
-                destination: serverMap[env] + "/:path*",
+                destination: proxySuffix + "/:path*",
             },
         ];
     },

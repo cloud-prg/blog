@@ -5,9 +5,9 @@ import TextArea from 'antd/es/input/TextArea';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Markdown from 'react-markdown';
-import { mockCommentList, mockPaper } from 'src/constant/paper';
+// import { mockCommentList, mockPaper } from 'src/constant/paper';
 import service from 'src/service';
-import { proxySuffix } from 'src/service/proxy';
+import { proxySuffix } from '#/setupProxy'
 import { commentProps, paperProps, replyProps } from 'src/type';
 
 export default async function Paper(props: {
@@ -49,7 +49,9 @@ export default async function Paper(props: {
     return (
       <div id={`comment-${id}`} className="w-full flex border border-solid">
         <div className="w-[120px] p-[12px] pt-[24px] flex flex-col gap-[4px] items-center border border-solid border-black-500">
-          <UserOutlined className="text-[24px]" />
+          {/* @ts-ignore */}
+          <UserOutlined className="text-[24px]"
+          />
           <span>{user}</span>
         </div>
         <div className="flex-1 flex flex-col border border-solid border-black-500">
@@ -83,6 +85,7 @@ export default async function Paper(props: {
     return (
       <div id={`reply-${id}`} className="w-full flex border border-solid">
         <div className="w-[120px] flex flex-col gap-[4px] items-center justify-center border border-solid border-black-500">
+          {/* @ts-ignore */}
           <UserOutlined className="text-[24px]" />
           <span>{user}</span>
         </div>
@@ -134,7 +137,7 @@ export default async function Paper(props: {
         </span>
 
         <div className="w-full">
-        {!comment.length && <Empty description={'暂无评论'} />}
+          {!comment.length && <Empty description={'暂无评论'} />}
 
           {comment.map((item: commentProps) => {
             return <Comment key={item.id} {...item} />;

@@ -71,12 +71,12 @@ const Sidebar = async () => {
           <span>昵称:</span>
           <span>云</span>
         </div>
-        <Link className="text-blue-500" href="/email.png" target="_blank">
+        <Link className="text-blue-500" href="/email.svg" target="_blank">
           email
         </Link>
         <Link
           className="text-blue-500"
-          href="https://github.com/yunshangzhou"
+          href="https://github.com/cloud-prg"
           target="_blank"
         >
           github
@@ -110,6 +110,7 @@ export default async function Index(props: any) {
     <div className="h-full w-full border pt-[12px] px-[12px] flex gap-[20px]">
       {/* 文章列表 */}
       <Suspense fallback={<div>主内容加载中...</div>}>{await Main()}</Suspense>
+      
       {/* 侧边栏 */}
       <Suspense fallback={<div>侧边栏加载中...</div>}>
         {await Sidebar()}

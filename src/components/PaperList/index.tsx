@@ -1,6 +1,5 @@
 import { PAGE, PAGE_SIZE } from '@/constant/books';
 import { formatDate } from '@/utils/index';
-import dayjs from 'dayjs';
 import Link from 'next/link';
 import Markdown from 'react-markdown';
 import { paperProps } from 'src/type';

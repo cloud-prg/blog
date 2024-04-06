@@ -1,5 +1,4 @@
-import { RequestHandler } from '@nestjs/common/interfaces';
-
-export default function requestHandler(config: RequestHandler) {
+import { AxiosRequestConfig } from 'axios'
+export default function requestHandler(config: AxiosRequestConfig) {
   return config;
 }
