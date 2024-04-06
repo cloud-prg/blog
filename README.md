@@ -11,3 +11,7 @@ pnpm run dev
 ```bash
 pnpm run build
 ```
+
+## 线上地址
+- [http://blog.cloudprg.cn](http://blog.cloudprg.cn)
+- [http://www.jiujiuwarehouse.com:3005](http://www.jiujiuwarehouse.com:3005)
