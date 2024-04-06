@@ -42,14 +42,10 @@ const Books = async ({
             Object.assign(params, { label });
         }
 
-        const res = await service.books.getPaperListByPage(params);
-        // console.log(`===== res`, res);
-
         const { code, data } = await service.books.getPaperListByPage(params);
         code !== 0 && notFound();
 
         dataSource = data;
-        console.log(`== dataSource`, dataSource);
     };
     await fetchDataSource()
 
