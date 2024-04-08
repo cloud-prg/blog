@@ -8,7 +8,12 @@
 
 ## Bug 3:
 - nest.js standalone打包后运行，发现好多文件路径404。在这个issues中找到了答案。 [https://github.com/vercel/next.js/issues/49283]
-- 解决方案：`I faced this issue today, I just found a workaround for this: copy .next/static to .next/standalone/.next/static`
+- 解决方案：`复制.next/static 至 .next/standalone/.next/static`
 
 ## Bug 4:
 - 本打算利用`husky`的`pre-push`来执行`docker`脚本的，但发现会有`git push`超时问题。因此只能把`docker`脚本放到`pre-commit`中执行。
+
+## Bug 5:
+- `nextjs`中对`fetch`函数进行了内部修改，导致默认的`fetch`为`SSG`
+- 注意`app router`的项目中，首页且为`use server`，如果使用的请求函数为`axios`。那么在打包构建时，会把页面的请求给调用了，并生成对应的静态页面(SSG)。也就导致了打包后的静态页面中，刷新并不会再次请求，即不会有请求的结果。
+- 但也就首页会有这个问题，解决方式为`axios`改为`fetch`，并在fetch中添加`default-no-store`缓存策略。

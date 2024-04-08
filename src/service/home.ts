@@ -1,21 +1,22 @@
-import axios from 'axios';
-import { baseInstance, defaultInstance } from './instance';
+import { fetchInstance } from './instance';
 import { proxySuffix } from '#/setupProxy.js';
-import { jointResponse } from '@/utils/responseHandler';
+import { jointResponse, responseProps } from '@/utils/responseHandler';
 
 const apiMap = {
   async getPaperListPagination(params: { page: number; pageSize: number }) {
-    const res: jointResponse = await defaultInstance.post(
-      proxySuffix + '/paper/getPaperListPagination',
-      params
-    );
+    const res: responseProps = await fetchInstance({
+      method: 'POST',
+      url: proxySuffix + '/paper/getPaperListPagination',
+      body: params,
+    })
+
     return res;
   },
   async getCategories() {
-    // const res = await baseInstance.get('/label/getCategories');
-    const res: jointResponse = await defaultInstance.get(
-      proxySuffix + '/label/getCategories'
-    );
+    const res: responseProps = await fetchInstance({
+      url: proxySuffix + '/label/getCategories',
+    })
+
     return res;
   },
 };

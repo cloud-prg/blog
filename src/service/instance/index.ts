@@ -14,3 +14,21 @@ export const defaultInstance = axios.create({
 });
 defaultInstance.interceptors.response.use(responseHandler);
 baseInstance.interceptors.response.use(responseHandler);
+
+export const fetchInstance = ({
+  method = "GET",
+  url,
+  headers = {
+    'Content-Type': 'application/json',
+  },
+  body
+}: any) => {
+  return new Promise((resolve, reject) => {
+    fetch(url, { method, headers, body: JSON.stringify(body), cache: 'no-store' })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => resolve(data))
+      .catch(error => reject(error));
+  });
+}

@@ -3,9 +3,9 @@ import { AxiosResponse } from 'axios';
 
 const successStatus = [200, 201, 204];
 
-interface responseProps {
-  code: number;
-  status: number;
+export interface responseProps {
+  code?: number;
+  status?: number;
   data?: any;
   msg?: string;
 }

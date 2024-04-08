@@ -1,7 +1,7 @@
 version: '2'
 services:
   blog:
-    image: cloudprg/blog:v0.0.1
+    image: test/blog:v0.0.1
     container_name: "blog"
     restart: always
     ports: 
