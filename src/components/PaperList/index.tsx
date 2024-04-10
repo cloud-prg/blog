@@ -62,7 +62,7 @@ const PaperList = (props: IProps) => {
         } = item;
         const time = formatDate?.(createdAt);
         const limitContent = content?.slice?.(0, 80);
-----
+
         return (
           <div
             key={paperId}
