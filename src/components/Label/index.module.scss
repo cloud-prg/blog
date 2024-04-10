@@ -1,0 +1,8 @@
+.label {
+    background-color: var(--light-grey);
+    padding: 8px 16px;
+
+    &:hover{
+    background-color: var(--grey);
+    }
+}

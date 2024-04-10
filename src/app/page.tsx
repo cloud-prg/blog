@@ -11,20 +11,8 @@ import { Suspense } from 'react';
 import service from 'src/service';
 import { PAGE, PAGE_SIZE } from '@/constant/books';
 
-const categories = [
-  {
-    label: 'ts',
-    count: 16,
-  },
-  {
-    label: 'rust',
-    count: 12,
-  },
-  {
-    label: 'node',
-    count: 8,
-  },
-];
+import classNames from 'classnames/bind';
+const cx = classNames.bind(styles);
 
 const Main = async () => {
   try {
@@ -38,8 +26,8 @@ const Main = async () => {
     }
 
     return (
-      <div className="flex-1 flex flex-col gap-[20px] p-[12px] h-full border border-solid border-black-50">
-        <div className="bold text-[24px]">最新文章</div>
+      <div className={cx('main')}>
+        <div className={cx("title")}>最新文章</div>
         <PaperList dataSource={dataSource} />
         <Link
           className="text-blue-500"
