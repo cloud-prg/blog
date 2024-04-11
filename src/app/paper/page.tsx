@@ -5,7 +5,7 @@ import TextArea from 'antd/es/input/TextArea';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Markdown from 'react-markdown';
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 // import { mockCommentList, mockPaper } from 'src/constant/paper';
 import service from 'src/service';
 import { proxySuffix } from '#/setupProxy'
@@ -113,7 +113,6 @@ export default async function Paper(props: {
         <span className="text-[16px] text-gray-400">{description}</span>
         <div className={`${cx('markdown-region')} default-style-sheet`}>
           <Markdown
-            children={content}
             components={{
               code(props) {
                 const { children, className, node, ...rest } = props
@@ -122,9 +121,10 @@ export default async function Paper(props: {
                   <SyntaxHighlighter
                     {...rest}
                     PreTag="div"
-                    children={String(children).replace(/\n$/, '')}
                     language={match[1]}
-                  />
+                  >
+                    {String(children).replace(/\n$/, '')}
+                  </SyntaxHighlighter>
                 ) : (
                   <code {...rest} className={className}>
                     {children}
@@ -132,7 +132,7 @@ export default async function Paper(props: {
                 )
               }
             }}
-          />
+          >{content}</Markdown>
         </div>
         {/* {content}</Markdown> */}
         <span className="w-full mt-[12px] text-right">
