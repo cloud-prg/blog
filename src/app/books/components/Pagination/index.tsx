@@ -1,6 +1,8 @@
 import { CENTER_SIDE, ELLIPSIS_LIMIT } from "@/constant/books";
 import { useCallback } from "react";
-
+import styles from "./index.module.scss";
+import classNames from "classnames/bind";
+const cx = classNames.bind(styles);
 
 interface IProps {
     total: number;
@@ -28,7 +30,7 @@ const Pagination: React.FC<IProps> = (props) => {
 
             return <a
                 className={`px-[6px] cursor-pointer hover:bg-gray-200 rounded-md 
-                ${index + 1 === currentPage && 'pointer-events-none text-blue-400 border border-blue-300 rounded-md'}`}
+                ${index + 1 === currentPage && 'pointer-events-none text-primary-4'}`}
                 href={`?${objToQuery({ ...queryParams, page: page || index + 1, pageSize })}`}
             >
                 {ellipsis ? '...' : index + 1}
@@ -40,7 +42,7 @@ const Pagination: React.FC<IProps> = (props) => {
     let ellipsisRight = false
     return (
         <div className="p-2 flex justify-between items-center">
-            {previousPage > 0 && <a className="hover:text-blue-300" href={`?${objToQuery({ ...queryParams, page: previousPage, pageSize })}`}>上一页</a>}
+            {previousPage > 0 && <a className={cx('side-link')} href={`?${objToQuery({ ...queryParams, page: previousPage, pageSize })}`}>{`<`}</a>}
             <div className="mx-[16px] flex items-center gap-[6px]">
                 {totalPages > 0 && new Array(totalPages).fill(null).map((_, index) => {
                     const leftBd = ELLIPSIS_LIMIT - 1;
@@ -68,7 +70,7 @@ const Pagination: React.FC<IProps> = (props) => {
                     return <Link key={index} index={index} />
                 })}
             </div>
-            {nextPage <= totalPages && <a className="hover:text-blue-300" href={`?${objToQuery({ ...queryParams, page: nextPage, pageSize })}`}>下一页</a>}
+            {nextPage <= totalPages && <a className={cx('side-link')} href={`?${objToQuery({ ...queryParams, page: nextPage, pageSize })}`}>{`>`}</a>}
         </div>
     )
 }

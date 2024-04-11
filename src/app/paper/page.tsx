@@ -5,10 +5,15 @@ import TextArea from 'antd/es/input/TextArea';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Markdown from 'react-markdown';
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 // import { mockCommentList, mockPaper } from 'src/constant/paper';
 import service from 'src/service';
 import { proxySuffix } from '#/setupProxy'
 import { commentProps, paperProps, replyProps } from 'src/type';
+
+import styles from './index.module.scss';
+import classNames from 'classnames/bind';
+const cx = classNames.bind(styles);
 
 export default async function Paper(props: {
   params: Record<string, any>;
@@ -47,25 +52,25 @@ export default async function Paper(props: {
     const time = formatDate(createdAt);
 
     return (
-      <div id={`comment-${id}`} className="w-full flex border border-solid">
-        <div className="w-[120px] p-[12px] pt-[24px] flex flex-col gap-[4px] items-center border border-solid border-black-500">
+      <div id={`comment-${id}`} className={cx('comment')}>
+        <div className={cx('user')}>
           {/* @ts-ignore */}
           <UserOutlined className="text-[24px]"
           />
           <span>{user}</span>
         </div>
-        <div className="flex-1 flex flex-col border border-solid border-black-500">
-          <span className="w-full p-[12px] mb-[12px] text-[16px]">{text}</span>
-          <div className='w-full p-[12px] flex items-center justify-end gap-[12px]'>
-            <span className="text-[14px] text-gray-400">
+        <div className={cx("text-region")}>
+          <span className={cx("text")}>{text}</span>
+          <div className={cx("footer")}>
+            <span className={cx('date')}>
               {time}
             </span>
             <Link href={`/paper/?id=${searchParams.id}&commentId=${id}#comment-reply-${id}`}
               id={`comment-reply-${id}`}
-              className='text-[14px] cursor:pointer hover:text-blue-400'>回复</Link>
+              className={cx('reply-link')}>回复</Link>
           </div>
 
-          <div className='w-full flex flex-col'>
+          <div id="reply-region" className='w-full flex flex-col'>
             {reply.length > 0 &&
               reply.map((item) => {
                 return <Reply key={item.id} {...item} />
@@ -106,7 +111,30 @@ export default async function Paper(props: {
       <div className="w-full mb-[20px] flex flex-col items-center">
         <span className="text-[24px]">{title}</span>
         <span className="text-[16px] text-gray-400">{description}</span>
-        <Markdown>{content}</Markdown>
+        <div className={`${cx('markdown-region')} default-style-sheet`}>
+          <Markdown
+            children={content}
+            components={{
+              code(props) {
+                const { children, className, node, ...rest } = props
+                const match = /language-(\w+)/.exec(className || '')
+                return match ? (
+                  <SyntaxHighlighter
+                    {...rest}
+                    PreTag="div"
+                    children={String(children).replace(/\n$/, '')}
+                    language={match[1]}
+                  />
+                ) : (
+                  <code {...rest} className={className}>
+                    {children}
+                  </code>
+                )
+              }
+            }}
+          />
+        </div>
+        {/* {content}</Markdown> */}
         <span className="w-full mt-[12px] text-right">
           提交于<span className="ml-[4px] text-gray-500">{time}</span>
         </span>

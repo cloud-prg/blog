@@ -1,5 +1,9 @@
+.side-link {
+    border-radius: 4px;
+    padding: 4px 8px;
+    line-height: 1.2;
 
-
-
-
-
+    &:hover {
+        background: rgba(0,0,0,0.1);
+    }
+}

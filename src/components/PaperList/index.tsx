@@ -17,38 +17,38 @@ interface IProps {
 const PaperList = (props: IProps) => {
   const { dataSource, showFooter = true } = props;
 
-  const Footer = (props) => {
-    const { paperId, labels } = props;
-    return <>
-      <div className="mt-[12px] flex justify-between">
-        <div className="flex items-center gap-[8px]">
-          <span className="text-[16px]">分类:</span>
-          <div className="flex items-center gap-[4px]">
-            {!labels?.length && '暂无'}
-            {labels?.map(({ id: labelId, label }) => {
-              return (
-                <Link
-                  key={`${paperId}-${labelId}`}
-                  className="hover:text-blue-400"
-                  href={`/books/?label=${label}&page=${PAGE}&pageSize=${PAGE_SIZE}`}
-                >
-                  {label}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-        <Link
-          className="hover:text-blue-400"
-          suppressHydrationWarning
-          href={`/paper/?id=${paperId}#comment`}
-          target="_blank"
-        >
-          评论{`(${Math.floor(Math.random() * 100)})`}
-        </Link>
-      </div>
-    </>
-  }
+  // const Footer = (props) => {
+  //   const { paperId, labels } = props;
+  //   return <>
+  //     <div className="mt-[12px] flex justify-between">
+  //       <div className="flex items-center gap-[8px]">
+  //         <span className="text-[16px]">分类:</span>
+  //         <div className="flex items-center gap-[4px]">
+  //           {!labels?.length && '暂无'}
+  //           {labels?.map(({ id: labelId, label }) => {
+  //             return (
+  //               <Link
+  //                 key={`${paperId}-${labelId}`}
+  //                 className="hover:text-blue-400"
+  //                 href={`/books/?label=${label}&page=${PAGE}&pageSize=${PAGE_SIZE}`}
+  //               >
+  //                 {label}
+  //               </Link>
+  //             );
+  //           })}
+  //         </div>
+  //       </div>
+  //       <Link
+  //         className="hover:text-blue-400"
+  //         suppressHydrationWarning
+  //         href={`/paper/?id=${paperId}#comment`}
+  //         target="_blank"
+  //       >
+  //         评论{`(${Math.floor(Math.random() * 100)})`}
+  //       </Link>
+  //     </div>
+  //   </>
+  // }
   return (
     <div className={cx('paper-list')}>
       {dataSource?.map((item) => {
@@ -61,7 +61,8 @@ const PaperList = (props: IProps) => {
           labels,
         } = item;
         const time = formatDate?.(createdAt);
-        const limitContent = content?.slice?.(0, 80);
+        // const limitContent = content?.slice?.(0, 80);
+        let hasLabelsEllipsis = false
 
         return (
           <div
@@ -74,13 +75,19 @@ const PaperList = (props: IProps) => {
             </div>
             <div className={cx('labels')}>
               {!labels?.length && '暂无'}
-              {labels?.map(({ id: labelId, label },index) => {
-                if(index <= 4){
+              {labels?.map(({ id: labelId, label }, index) => {
+                if (hasLabelsEllipsis) {
+                  return null
+                }
+
+                if (index < 4) {
                   return (
                     <Label label={label} href={`/books/?label=${label}&page=${PAGE}&pageSize=${PAGE_SIZE}`} key={`${paperId}-${labelId}`} />
                   );
                 }
-                return <Label label={`+${labels.length-4}`} key={`${paperId}-${labelId}`} href="#"/>
+
+                hasLabelsEllipsis = true
+                return <Label label={`+${labels.length - 4}`} key={`${paperId}-${labelId}`} href="#" />
               })}
             </div>
           </div>

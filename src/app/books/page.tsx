@@ -11,6 +11,10 @@ import { PAGE_SIZE } from '@/constant/books';
 import Pagination from './components/Pagination'
 import React from 'react';
 
+import styles from './index.module.scss';
+import classNames from 'classnames/bind';
+const cx = classNames.bind(styles);
+
 const Books = async ({
     searchParams,
 }: {
@@ -50,32 +54,39 @@ const Books = async ({
     await fetchDataSource()
 
     return (
-        <div className="h-full flex flex-col border border-solid border-black-400">
+        <div className={cx("book")}>
             {label && (
-                <div className="font-bold text-[20px]">
+                <div className={cx('result-wrap')}>
                     搜索
-                    <span className="text-red-500">{label}</span>
+                    <span className={cx('label')}>{label}</span>
                     的结果:
                 </div>
             )}
-            <div className="flex-1 flex flex-col justify-between">
+            <div className={cx('content')}>
                 {dataSource!?.items.length > 0 ? (
                     <>
                         <PaperList showFooter={true} dataSource={dataSource!?.items} />
                     </>
                 ) : (
-                    <Empty description={'暂无文章数据'} />
+                    <Empty
+                        className='flex flex-col items-center justify-center w-full h-full'
+                        imageStyle={{
+                            height: 200,
+                        }}
+                        description={<span className='text-[16px]'>暂无文章数据</span>} />
                 )}
 
                 {/* Pagination */}
-                <div className="flex pb-[32px] justify-center">
-                    <Pagination
-                        total={dataSource!?.total}
-                        pageSize={+pageSize}
-                        currentPage={+page}
-                        queryParams={searchParams}
-                    />
-                </div>
+                {(dataSource!?.total / pageSize) > 1 &&
+                    <div className="flex pb-[32px] justify-center">
+                        <Pagination
+                            total={dataSource!?.total}
+                            pageSize={+pageSize}
+                            currentPage={+page}
+                            queryParams={searchParams}
+                        />
+                    </div>
+                }
             </div>
         </div>
     );

@@ -3,6 +3,8 @@ import React from "react";
 import styles from "./index.module.scss";
 import classNames from "classnames/bind";
 import Link from "next/link";
+import { Typography } from "antd";
+
 const cx = classNames.bind(styles);
 
 interface IProps {

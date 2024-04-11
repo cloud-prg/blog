@@ -12,29 +12,36 @@ import service from 'src/service';
 import { PAGE, PAGE_SIZE } from '@/constant/books';
 
 import classNames from 'classnames/bind';
+import { HOME_PAGE_SIZE } from '@/constant/home';
 const cx = classNames.bind(styles);
 
 const Main = async () => {
   try {
     let dataSource: any[] = [];
+    let countTotal: number = 0;
     const { code, data } = await service.home.getPaperListPagination({
       page: 1,
-      pageSize: 4,
+      pageSize: HOME_PAGE_SIZE,
     });
     if (code === 0) {
-      dataSource = data.items;
+      const { items, total } = data;
+      dataSource = items;
+      countTotal = total
     }
 
     return (
       <div className={cx('main')}>
         <div className={cx("title")}>最新文章</div>
         <PaperList dataSource={dataSource} />
-        <Link
-          className="text-blue-500"
-          href={`/books/?page=${PAGE}&pageSize=${PAGE_SIZE}`}
-        >
-          更多内容...
-        </Link>
+        {
+          countTotal > HOME_PAGE_SIZE &&
+          <Link
+            className="text-primary-4 underline"
+            href={`/books/?page=${PAGE}&pageSize=${PAGE_SIZE}`}
+          >
+            更多内容...
+          </Link>
+        }
       </div>
     );
   } catch (err) {
@@ -50,43 +57,44 @@ const Sidebar = async () => {
   }
 
   return (
-    <div className="flex flex-col gap-[20px] w-[20%] border border-solid border-red-500 h-fit">
-      {/* 博主信息 */}
-      <div className="flex flex-col gap-[12px]">
-        {/* 个人信息... */}
-        <Image src={avatarImg} alt="" />
-        <div className="flex gap-[4px]">
-          <span>昵称:</span>
-          <span>云</span>
-        </div>
-        <Link className="text-blue-500" href="/email.svg" target="_blank">
-          email
-        </Link>
-        <Link
-          className="text-blue-500"
-          href="https://github.com/cloud-prg"
-          target="_blank"
-        >
-          github
-        </Link>
+    <div className={cx('sidebar')}>
+      <div className={cx("item")}>
+        <span className={cx('title')}>联系信息</span>
+        <ul>
+          <li>
+            <Link className="text-primary-4 underline" href="/email.svg" target="_blank">
+              email
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="text-primary-4 underline"
+              href="https://github.com/cloud-prg"
+              target="_blank"
+            >
+              github
+            </Link>
+          </li>
+        </ul>
       </div>
 
       {/* 文章分类 */}
-      <div className="flex flex-col">
-        <span className="text-[18px] font-bold mb-[12px]">文章分类</span>
-        <div className="flex flex-col gap-[8px]">
+      <div className={cx("item")}>
+        <span className={cx('title')}>文章分类</span>
+        <ul>
           {categories.map(({ label, count }) => {
             return (
-              <Link
-                className="hover:text-blue-400"
-                key={label}
-                href={`/books/?label=${label}&page=${1}&pageSize=${4}`}
-              >
-                {`${label}(${count})`}
-              </Link>
+              <li key={label}>
+                <Link
+                  className="hover:text-primary-4"
+                  href={`/books/?label=${label}&page=${1}&pageSize=${PAGE_SIZE}`}
+                >
+                  {`${label}(${count})`}
+                </Link>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </div>
   );
@@ -94,12 +102,8 @@ const Sidebar = async () => {
 
 export default async function Index(props: any) {
   return (
-    // whole
-    <div className="h-full w-full border pt-[12px] px-[12px] flex gap-[20px]">
-      {/* 文章列表 */}
+    <div className={cx("home")}>
       <Suspense fallback={<div>主内容加载中...</div>}>{await Main()}</Suspense>
-      
-      {/* 侧边栏 */}
       <Suspense fallback={<div>侧边栏加载中...</div>}>
         {await Sidebar()}
       </Suspense>

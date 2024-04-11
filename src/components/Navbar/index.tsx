@@ -38,7 +38,10 @@ const Navbar = () => {
   return (
     <div className={cx("navbar")}>
       <div className={cx("left-part")}>
-        <Link className={cx("logo")} href="/">Cloudprg Blog</Link>
+        <div className='flex flex-col gap-[4px]'>
+          <Link className={cx("logo")} href="/">Cloudprg Blog</Link>
+          <span className='text-[14px] text-dark-grey italic'>分享技术，开源生活</span>
+        </div>
         {navItems?.map((item) => {
           return (
             <Link key={item.label} href={item.link} className={cx("nav-item")}>

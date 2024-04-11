@@ -1,0 +1,66 @@
+
+
+.comment {
+    width: 100%;
+    display: flex;
+    border: 1px solid;
+
+    .user{
+        width: 120px;
+        padding: 12px;
+        padding-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: center;
+        border: 1px solid .000;
+    }
+
+    // ...
+    .text-region {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        border: 1px solid #000;
+      }
+      
+      .text {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 12px;
+        font-size: 16px;
+      }
+      
+      .footer {
+        width: 100%;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 12px;
+      }
+      
+      .footer .date {
+        font-size: 14px;
+        color: #ccc;
+      }
+      
+      .reply-link {
+        font-size: 14px;
+        cursor: pointer;
+      }
+      
+      .reply-link:hover {
+        color: #00f;
+      }
+      
+      .reply-region {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+}
+
+.markdown-region{
+  
+}
