@@ -11,7 +11,7 @@ export interface paperProps {
 }
 
 export interface commentProps {
-  index: number;
+  index?: number;
   id: number;
   user: string;
   text: string;
