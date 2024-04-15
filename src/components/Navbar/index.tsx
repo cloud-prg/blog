@@ -29,29 +29,34 @@ const Navbar = () => {
     //   label: '阅读书籍',
     //   link: '/books',
     // },
-    // {
-    //   label: '关于',
-    //   link: '',
-    // },
+    {
+      label: '归档',
+      link: '/rollback',
+    },
+    {
+      label: '关于',
+      link: '/about',
+    },
   ];
 
   return (
     <div className={cx("navbar")}>
       <div className={cx("left-part")}>
         <div className='flex flex-col gap-[4px]'>
-          <Link className={cx("logo")} href="/">Cloudprg Blog</Link>
+          <Link className={cx("logo")} id="logo" href="/">Cloudprg Blog</Link>
           <span className='text-[14px] text-dark-grey italic'>分享技术，开源生活</span>
         </div>
-        {navItems?.map((item) => {
-          return (
-            <Link key={item.label} href={item.link} className={cx("nav-item")}>
-              {item.label}
-            </Link>
-          );
-        })}
       </div>
       <div className={cx("right-part")}>
-
+        <div className={cx("nav-item-list")}>
+          {navItems?.map((item) => {
+            return (
+              <Link key={item.label} href={item.link} className={cx("item")}>
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
         <Input
           className={cx("search-input")}
           value={searchText}

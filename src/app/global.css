@@ -15,11 +15,13 @@
   --black: #000000;
 
   --sidebar-width: 256px;
-  --navbar-search-width: 256px;
+  --search-width: 256px;
+  --markdown-navbar-width: 256px;
+  --main-sidebar-gap: 24px;
 }
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 }
 
 body {

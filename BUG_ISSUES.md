@@ -17,3 +17,6 @@
 - `nextjs`中对`fetch`函数进行了内部修改，导致默认的`fetch`为`SSG`
 - 注意`app router`的项目中，首页且为`use server`，如果使用的请求函数为`axios`。那么在打包构建时，会把页面的请求给调用了，并生成对应的静态页面(SSG)。也就导致了打包后的静态页面中，刷新并不会再次请求，即不会有请求的结果。
 - 但也就首页会有这个问题，解决方式为`axios`改为`fetch`，并在fetch中添加`default-no-store`缓存策略。
+
+## Bug 6:
+- `position: sticky`在mdn上说明会粘性至距离最近且`overflow`为 auto hidden scroll的祖先元素。但除此之外，还必须满足目标元素的高度小于父元素高度才行。

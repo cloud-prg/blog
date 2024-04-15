@@ -15,6 +15,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={cx('layout')}>
         <div className='w-full px-[10%]'><Navbar /></div>
+        <div className='w-full mb-[8px] border-t border-light-grey' />
+
         <div className='w-full px-[10%]'>{children}</div>
         <Footer />
       </body>

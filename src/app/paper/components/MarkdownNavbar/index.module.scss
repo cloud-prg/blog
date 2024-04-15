@@ -1,0 +1,21 @@
+.markdown-navbar {
+    display: flex !important;
+    flex-direction: column;
+    gap: 4px;
+    width: var(--markdown-navbar-width);
+
+    ul{
+        list-style: none !important;
+    }
+
+    a{
+        text-decoration: none !important;
+        &:hover{
+            color: var(--primary-4) !important;
+        }
+        &:focus{
+            text-decoration: underline !important;
+            color: var(--primary-4) !important;
+        }
+    }
+}

@@ -58,8 +58,16 @@ const Sidebar = async () => {
 
   return (
     <div className={cx('sidebar')}>
+      {/* 关于作者 */}
       <div className={cx("item")}>
-        <span className={cx('title')}>联系信息</span>
+        <span className={cx('title')}>关于作者</span>
+        <span className={cx('content')}>
+          {/* cs专业21届本科生，毕业后从事于前端开发至今。技术栈上熟悉vue2/3,nextjs,nestjs、docker&jenkins CI&CD、工程化等。曾独立过类xgPlayer、gpt、组件库 */}
+          </span>
+      </div>
+
+      <div className={cx("item")}>
+        <span className={cx('title')}>联系方式</span>
         <ul>
           <li>
             <Link className="text-primary-4 underline" href="/email.svg" target="_blank">
@@ -97,7 +105,7 @@ const Sidebar = async () => {
         </ul>
       </div>
     </div>
-  );
+  );  
 };
 
 export default async function Index(props: any) {
