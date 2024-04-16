@@ -132,7 +132,7 @@ export default async function Paper(props: Props) {
   };
 
   const Reply = (props: replyProps) => {
-    const { id, parentId, user, text, createdAt } = props;
+    const { id, parentId, user, text, createdAt, author = false } = props;
     const time = formatDate(createdAt);
 
     return (
@@ -143,7 +143,7 @@ export default async function Paper(props: Props) {
         </div>
         <div className={cx("text-region")}>
           <div className={cx('header', id == searchReplyId && 'header--active')}>
-            <span className={cx('user')}>{user}</span>
+            <span className={cx('user', author && 'user--author')}>{author ? '[博主]' : user}</span>
             <span className={cx('date')}>{time}</span>
           </div>
           <span className={cx("text")}>{text}</span>

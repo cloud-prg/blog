@@ -28,6 +28,7 @@ export interface replyProps {
   id: number;
   parentId: number;
   user: string;
+  author?: boolean;
   text: string;
   createdAt: Date;
 }
