@@ -1,13 +1,17 @@
 import Footer from '@/components/Footer';
 import Navbar from '../components/Navbar';
-import { DefaultSeo } from 'next-seo';
 
 import './global.css';
 
 import styles from './page.module.scss'
 import classNames from 'classnames/bind';
 import { defaultSeoConfig } from '@/constant/seo';
+import { Metadata } from 'next';
 const cx = classNames.bind(styles);
+
+export const metadata: Metadata = {
+  ...defaultSeoConfig,
+}
 
 export default function RootLayout({
   children,
@@ -16,9 +20,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <DefaultSeo
-        {...defaultSeoConfig}
-      />
       <body className={cx('layout')}>
         <div className='w-full px-[10%]'><Navbar /></div>
         <div className='w-full mb-[8px] border-t border-light-grey' />

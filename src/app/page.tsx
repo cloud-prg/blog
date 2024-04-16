@@ -13,9 +13,13 @@ import { PAGE, PAGE_SIZE } from '@/constant/books';
 
 import classNames from 'classnames/bind';
 import { HOME_PAGE_SIZE } from '@/constant/home';
-import { NextSeo } from 'next-seo';
 import { homeSeoConfig } from '@/constant/seo';
+import { Metadata, ResolvingMetadata } from 'next';
 const cx = classNames.bind(styles);
+
+export const metadata: Metadata = {
+  ...homeSeoConfig,
+}
 
 const Main = async () => {
   try {
@@ -114,7 +118,6 @@ const Sidebar = async () => {
 export default async function Index(props: any) {
   return (
     <>
-      <NextSeo {...homeSeoConfig} />
       <div className={cx("home")}>
         <Suspense fallback={<div>主内容加载中...</div>}>{await Main()}</Suspense>
         <Suspense fallback={<div>侧边栏加载中...</div>}>

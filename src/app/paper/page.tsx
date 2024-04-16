@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
+import Image from 'next/image';
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 // import { mockCommentList, mockPaper } from 'src/constant/paper';
@@ -20,14 +21,52 @@ import Label from '@/components/Label';
 import { PAGE, PAGE_SIZE } from '@/constant/books';
 
 import RandomAvatar from '@/components/RandomAvatar';
-import { NextSeo } from 'next-seo';
+import { Metadata, ResolvingMetadata } from 'next';
 
 const cx = classNames.bind(styles);
 
-export default async function Paper(props: {
-  params: Record<string, any>;
-  searchParams: Record<string, any>;
-}) {
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: any }
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { id: searchId } = searchParams;
+  if (!searchId) {
+    notFound();
+  }
+
+  const { code, data } = await service.paper.getPaper(searchId);
+  code !== 0 && notFound();
+  const { current } = data;
+  const { id, title, cover, description, labels } = current;
+
+  return {
+    title: title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `https://blog.cloudprg.cn/paper/?id=${id}`,
+      siteName: 'Cloudprg Blog(云程博客)',
+      images: [
+        {
+          url: cover, // Must be an absolute URL
+          width: 600,
+          height: 400,
+          alt: '封面图',
+        },
+      ],
+      locale: 'zh_CN',
+      type: 'website',
+    },
+  }
+}
+
+export default async function Paper(props: Props) {
   const { searchParams } = props;
   const { id: searchId,
     commentId: searchCommentId,
@@ -146,7 +185,6 @@ export default async function Paper(props: {
 
 
   return <>
-    <NextSeo title={title} description={description} />
     <div className={`${cx('paper-container')}`}>
       <div className={`${cx('content-region')}`}>
         <span className={`${cx('title')}`}>{title}</span>
@@ -171,7 +209,7 @@ export default async function Paper(props: {
               remarkPlugins={[remarkGfm]}
               components={{
                 img: ({ children, ...props }) => {
-                  return <img className='mx-auto' src={props.src} alt={props.src} />
+                  return <Image className='mx-auto' src={props.src} alt={props.src} />
                 },
                 h1: ({ children, ...props }) => {
                   const { value } = props.node.children[0] as any;
