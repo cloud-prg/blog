@@ -198,7 +198,7 @@ export default async function Paper(props: Props) {
           <span className="flex items-center gap-[4px]">
             {/* @ts-ignore */}
             <FieldTimeOutlined />
-            阅读{Math.floor(content.length / 600)}分钟
+            阅读{Math.floor(content ? content?.length / 600 : 0)}分钟
           </span>
 
         </span>
@@ -265,19 +265,27 @@ export default async function Paper(props: Props) {
         </div>
         <div className={cx("nav-container")}>
           {previous ? (
-            <Link
-              className="hover:text-blue-400"
-              href={`/paper?id=${previous.id}`}
-            >{`上一篇: ${previous.title}`}</Link>
+            <div className="flex items-center gap-[4px]">
+              <span>上一篇:</span>
+              <Link
+                className="hover:text-blue-400"
+                href={`/paper?id=${previous.id}`}
+              >{previous.title}</Link>
+            </div>
           ) : (
+            // 占位符
             <div />
           )}
           {next ? (
-            <Link
-              className="hover:text-blue-400"
-              href={`/paper?id=${next.id}`}
-            >{`下一篇: ${next.title}`}</Link>
+            <div className="flex items-center gap-[4px]">
+              <span>下一篇:</span>
+              <Link
+                className="hover:text-blue-400"
+                href={`/paper?id=${next.id}`}
+              >{`${next.title}`}</Link>
+            </div>
           ) : (
+            // 占位符
             <div />
           )}
         </div>
