@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import styles from './index.module.scss';
 import classNames from "classnames/bind";
+import { strictMatch } from "@/utils";
 const cx = classNames.bind(styles);
 
 const MarkdownNavbar: React.FC<{ content: string }> = (props) => {
@@ -11,12 +12,13 @@ const MarkdownNavbar: React.FC<{ content: string }> = (props) => {
     const navItems = [];
 
     content?.split?.('\n')?.forEach?.((line) => {
-        if (line.startsWith('##')) {
+        const prefix = line.split(' ')[0];
+        if (strictMatch(prefix, /^##$/)) {
             const lastIndex = Math.max(navItems.length - 1, 0);
             !navItems[lastIndex] && navItems.push([`目录-${lastIndex + 1}`, []]);
 
             navItems[lastIndex]?.[1]?.push(line.split(' ')[1]);
-        } else if (line.startsWith('#')) {
+        } else if (strictMatch(prefix, /^#$/)) {
             navItems.push([line.split(' ')[1], []]);
         }
     })
@@ -42,6 +44,7 @@ const MarkdownNavbar: React.FC<{ content: string }> = (props) => {
                 </li>
             })}
             <li style={{ listStyle: 'square' }}><Link href={`#comment`}>查看评论</Link></li>
+            <li style={{ listStyle: 'square' }}><Link href={`#message`}>我要留言</Link></li>
             <li style={{ listStyle: 'square' }}><Link href={`#`}>回到顶部</Link></li>
         </ul>
     </div>

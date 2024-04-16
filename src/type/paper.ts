@@ -26,6 +26,7 @@ export interface commentProps {
 
 export interface replyProps {
   id: number;
+  parentId: number;
   user: string;
   text: string;
   createdAt: Date;

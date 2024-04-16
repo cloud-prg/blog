@@ -34,9 +34,11 @@
             .item {
                 // border:1px solid var(--light-grey);
                 background-color: var(--light-grey);
+                border-radius: 2px;
                 display: flex;
                 flex-direction: column;
                 gap: 12px;
+                padding-bottom: 4px;
 
                 .title {
                     padding-left: 8px;
@@ -45,6 +47,13 @@
                     color: white;
                 }
 
+                .content{
+                    padding-inline: 24px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    gap: 4px;
+                }
             }
         }
     }

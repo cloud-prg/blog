@@ -6,7 +6,6 @@
         flex-direction: column;
         gap: 24px;
 
-
         .year-list {
             .title {
                 font-weight: 700;
@@ -26,6 +25,10 @@
                     padding-left: 20px;
                     margin-top: 0;
                     transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+                    .date {
+                        color: var(--dark-grey);
+                    }
 
                     .date-link:hover {
                         text-decoration: underline;

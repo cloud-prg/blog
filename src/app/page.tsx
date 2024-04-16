@@ -13,6 +13,8 @@ import { PAGE, PAGE_SIZE } from '@/constant/books';
 
 import classNames from 'classnames/bind';
 import { HOME_PAGE_SIZE } from '@/constant/home';
+import { NextSeo } from 'next-seo';
+import { homeSeoConfig } from '@/constant/seo';
 const cx = classNames.bind(styles);
 
 const Main = async () => {
@@ -61,16 +63,17 @@ const Sidebar = async () => {
       {/* 关于作者 */}
       <div className={cx("item")}>
         <span className={cx('title')}>关于作者</span>
-        <span className={cx('content')}>
-          {/* cs专业21届本科生，毕业后从事于前端开发至今。技术栈上熟悉vue2/3,nextjs,nestjs、docker&jenkins CI&CD、工程化等。曾独立过类xgPlayer、gpt、组件库 */}
-          </span>
+        <div className={cx('content')}>
+          <span>cs专业21届本科生，毕业后从事于前端开发至今。技术栈上熟悉vue2/3,nextjs,nestjs、docker&jenkins CI&CD、工程化等。关注业界前沿，乐于踩坑并分享经验。</span>
+          <Link className='text-right text-primary-4 underline' href="/about">了解更多...</Link>
+        </div>
       </div>
 
       <div className={cx("item")}>
         <span className={cx('title')}>联系方式</span>
         <ul>
           <li>
-            <Link className="text-primary-4 underline" href="/email.svg" target="_blank">
+            <Link className="text-primary-4" href="/email.svg" target="_blank">
               email
             </Link>
           </li>
@@ -105,16 +108,19 @@ const Sidebar = async () => {
         </ul>
       </div>
     </div>
-  );  
+  );
 };
 
 export default async function Index(props: any) {
   return (
-    <div className={cx("home")}>
-      <Suspense fallback={<div>主内容加载中...</div>}>{await Main()}</Suspense>
-      <Suspense fallback={<div>侧边栏加载中...</div>}>
-        {await Sidebar()}
-      </Suspense>
-    </div>
+    <>
+      <NextSeo {...homeSeoConfig} />
+      <div className={cx("home")}>
+        <Suspense fallback={<div>主内容加载中...</div>}>{await Main()}</Suspense>
+        <Suspense fallback={<div>侧边栏加载中...</div>}>
+          {await Sidebar()}
+        </Suspense>
+      </div>
+    </>
   );
 }

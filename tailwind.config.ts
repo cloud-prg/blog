@@ -18,6 +18,7 @@ const config: Config = {
         transparent: 'transparent',
         current: 'currentColor',
         'primary-4': '#163bbf',
+        'primary-3': 'rgb(196, 47, 13)',
         'light-grey': '#F4F4F4',
         'dark-grey': '#777777',
         'white': '#ffffff',

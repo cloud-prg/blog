@@ -1,9 +1,14 @@
 /** @type {import('next').NextConfig} */
 import { proxySuffix } from './setupProxy.js'
+import  { codeInspectorPlugin } from 'code-inspector-plugin';
 
 const nextConfig = {
     reactStrictMode: false,
     output: 'standalone',
+    webpack: (config, { dev, isServer }) => {
+        config.plugins.push(codeInspectorPlugin({ bundler: 'webpack' }));
+        return config;
+      },
     async rewrites() {
         return [
             {
@@ -26,6 +31,7 @@ const nextConfig = {
             },
         ],
     },
+    
 };
 
 export default nextConfig;

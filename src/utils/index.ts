@@ -19,3 +19,7 @@ export const createQueryString = (
   });
   return params.toString();
 };
+
+export const strictMatch = (str: string, pattern: RegExp)=>{
+  return pattern.test(str);
+}

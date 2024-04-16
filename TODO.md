@@ -1,5 +1,5 @@
-- [ ] markdown-bar
-- [ ] paper ui
-- [ ] book ui
-- [ ] home ui
+- [x] markdown-bar
+- [x] paper ui
+- [x] book ui
+- [x] home ui
 - [ ] seo

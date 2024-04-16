@@ -47,7 +47,7 @@ const RollbackList = async () => {
           {dateList.map((dateItem: any) => {
             const { date, title, id } = dateItem;
             return <li className={cx('item')} key={id}>
-              <span>{date}</span>
+              <span className={cx('date')}>{date}</span>
               <Link className={cx("date-link")} href={`/paper/?id=${id}`}>{title}</Link>
             </li>
           })}

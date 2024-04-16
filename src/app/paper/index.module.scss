@@ -111,45 +111,55 @@
   .comment-region {
     display: flex;
     flex-direction: column;
-    border-width: 1px;
-    border-style: solid;
     width: 100%;
     margin-bottom: 20px;
 
     .title {
       margin-bottom: 12px;
-      color: 24px;
+      font-size: 24px;
+      font-weight: 500;
     }
 
     .reply,
     .comment {
       width: 100%;
       display: flex;
-      border: 1px solid;
       gap: 12px;
 
       .avatar-region {
-        width: 120px;
+        align-items: center;
         display: flex;
         flex-direction: column;
         gap: 12px;
-        align-items: center;
+        margin-right: 12px;
+
+        .uid {
+          color: var(--dark-grey);
+          font-size: 12px;
+        }
       }
 
       .text-region {
         display: flex;
         flex: 1;
         flex-direction: column;
-        border: 1px solid #000;
+        overflow-wrap: anywhere;
+
+
+        .header--active {
+          background-color: var(--primary-5);
+        }
 
         .header {
+          width: fit-content;
           display: flex;
           align-items: center;
           gap: 12px;
           font-size: 12px;
 
           .user {
-            color: var(--primary-4);
+            color: var(--primary-1);
+            font-weight: 500;
           }
 
           .date {
@@ -163,36 +173,61 @@
         }
 
         .reply-link {
-          margin-top: 12px;
+          width: fit-content;
+          font-size: 12px;
+          margin-top: 6px;
           color: var(--dark-grey);
         }
+
         .reply-link:hover {
           color: var(--primary-4);
         }
       }
+    }
+
+    .reply,
+    .comment+.comment {
+      margin-top: 16px;
     }
   }
 
   .message-region {
     display: flex;
     flex-direction: column;
-    border-width: 1px;
-    border-style: solid;
     width: 100%;
     padding-bottom: 32px;
 
     .title {
       margin-bottom: 12px;
-      color: 24px;
+      font-size: 24px;
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .cancel-link {
+        color: var(--dark-grey);
+        font-size: 14px;
+      }
     }
 
     .form-container {
       display: flex;
       flex-direction: column;
+      gap: 8px;
 
       .region {
         display: flex;
         width: 100%;
+      }
+
+      input,
+      textarea {
+        border: 1px solid var(--grey);
+        border-radius: 4px;
+        padding: 4px 6px;
+        outline: none;
+        font-size: 14px;
       }
     }
 
@@ -202,12 +237,9 @@
       align-items: center;
       width: 100%;
 
-      .cancel-link {
-        color: 14px;
 
-        :hover {
-          color: #3B82F6;
-        }
+      button:hover {
+        color: var(--primary-4)
       }
     }
   }
