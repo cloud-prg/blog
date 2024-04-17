@@ -155,9 +155,9 @@ export default async function Paper(props: Props) {
   }
 
   const MessageTitle = () => {
-    const id = searchCommentId || searchReplyId;
-    const target = searchCommentTarget || searchReplyTarget;
-    const href = searchCommentId ? `#comment-${searchCommentId}` : `#reply-${searchReplyId}`;
+    const id = searchReplyId || searchCommentId;
+    const target = searchReplyTarget || searchCommentTarget;
+    const href = searchReplyId ? `#reply-${searchReplyId}` : `#comment-${searchCommentId}`;
 
     return <>
       {id ?
