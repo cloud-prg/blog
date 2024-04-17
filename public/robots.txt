@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /xxx
+
+User-agent: *
+Allow: /

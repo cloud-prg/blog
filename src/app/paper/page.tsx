@@ -213,19 +213,23 @@ export default async function Paper(props: Props) {
                 },
                 h1: ({ children, ...props }) => {
                   const { value } = props.node.children[0] as any;
-                  return <h1 id={value}>
-                    {/* @ts-ignore */}
-                    <Link className={cx('h-link')} href={`#${value}`}><LinkOutlined /></Link>
-                    {children}
-                  </h1>
+                  return <Link className={cx('h-link')} href={`#${value}`}>
+                    <h1 id={value}>
+                      {children}
+                      {/* @ts-ignore */}
+                      <LinkOutlined className={cx('link-icon')} />
+                    </h1>
+                  </Link>
                 },
                 h2: ({ children, ...props }) => {
                   const { value } = props.node.children[0] as any;
-                  return <h2 id={value}>
-                    {/* @ts-ignore */}
-                    <Link className={cx('h-link')} href={`#${value}`}><LinkOutlined /></Link>
-                    {children}
-                  </h2>
+                  return <Link className={cx('h-link')} href={`#${value}`}>
+                    <h2 id={value}>
+                      {children}
+                      {/* @ts-ignore */}
+                      <LinkOutlined className={cx('link-icon')} />
+                    </h2>
+                  </Link>
                 },
                 code(props) {
                   const { children, className, node, ...rest } = props
