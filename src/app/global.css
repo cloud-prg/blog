@@ -49,6 +49,10 @@ pre {
   margin: 0;
 }
 
+p,li {
+  font-size: 1.2rem;
+}
+
 .default-style-sheet {
 
   html,
@@ -79,7 +83,7 @@ pre {
   menu,
   pre {
     display: block;
-    unicode-bidi: embed
+    unicode-bidi: embed;
   }
 
   li {
@@ -165,7 +169,7 @@ pre {
   dl,
   dir,
   menu {
-    margin: 1.12em 0
+    margin: 1.12em 0;
   }
 
   h5 {
