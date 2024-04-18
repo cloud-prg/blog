@@ -50,7 +50,7 @@ pre {
 }
 
 p,li {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
 }
 
 .default-style-sheet {
@@ -146,17 +146,27 @@ p,li {
 
   h1 {
     font-size: 2em;
-    margin: .67em 0
+    margin: .2em 0
   }
 
   h2 {
     font-size: 1.5em;
-    margin: .75em 0
+    margin: .15em 0
   }
 
   h3 {
     font-size: 1.17em;
-    margin: .83em 0
+    margin: .1em 0
+  }
+
+  ul,ol {
+    padding-bottom: 0;
+    li+li{
+      margin-top: 0;
+    }
+    li{
+      margin-top: 4px !important;
+    }
   }
 
   h4,

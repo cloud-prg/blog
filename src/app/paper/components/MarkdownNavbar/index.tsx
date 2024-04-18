@@ -34,13 +34,15 @@ const MarkdownNavbar: React.FC<{ content: string }> = (props) => {
                         <span>{`${index + 1}. ${h1}`}</span> :
                         <Link href={`#${h1}`}>{`${index + 1}. ${h1}`}</Link>
                     }
-                    <ul>
-                        {h2List.map((h2, subIndex) => {
-                            return <li key={subIndex}>
-                                <Link href={`#${h2}`}>{`${index + 1}.${subIndex + 1} ${h2}`}</Link>
-                            </li>
-                        })}
-                    </ul>
+                    {h2List?.length > 0 &&
+                        <ul>
+                            {h2List.map((h2, subIndex) => {
+                                return <li key={subIndex}>
+                                    <Link href={`#${h2}`}>{`${index + 1}.${subIndex + 1} ${h2}`}</Link>
+                                </li>
+                            })}
+                        </ul>
+                    }
                 </li>
             })}
             <li style={{ listStyle: 'square' }}><Link href={`#comment`}>查看评论</Link></li>
