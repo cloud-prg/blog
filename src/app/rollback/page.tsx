@@ -35,7 +35,10 @@ const RollbackList = async () => {
       });
     })
 
-    return Object.entries(dateMap)
+    // sort by year
+    return Object.entries(dateMap).sort((prev:any,next:any)=>{
+      return parseInt(next[0]) - parseInt(prev[0])
+    })
   }
 
   return <div className={cx('rollback-list')}>
