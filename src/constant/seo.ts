@@ -1,7 +1,7 @@
 export const defaultSeoConfig = {
     title: "云程博客(Cloudprg Blog)",
     description: "分享前端技术、开发经验、生活感悟。",
-    ['baidu-site-verification']: 'codeva-WeQVPvZzpD'
+    'baidu-site-verification': 'codeva-WeQVPvZzpD'
     // openGraph: {
     //     type: 'website',
     //     locale: 'en_IE',
@@ -18,5 +18,5 @@ export const defaultSeoConfig = {
 export const homeSeoConfig = {
     title: "云程博客(Cloudprg Blog)",
     description: "分享前端技术、开发经验、生活感悟。",
-    ['baidu-site-verification']: 'codeva-WeQVPvZzpD'
+    'baidu-site-verification': 'codeva-WeQVPvZzpD'
 }
