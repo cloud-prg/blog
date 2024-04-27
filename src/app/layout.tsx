@@ -22,12 +22,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <meta name="baidu-site-verification" content="codeva-WeQVPvZzpD"></meta>
       <body className={cx('layout')}>
         <Navbar />
-        <div className={cx('layout-content')} 
-        style={{
-          background: `url(${BgSvg.src})`,
-        }}
+        <div className={cx('layout-content')}
+          style={{
+            background: `url(${BgSvg.src})`,
+          }}
         >
           {children}</div>
         <Footer />
