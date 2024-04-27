@@ -1,0 +1,1 @@
+export const navbarBgSrc = 'https://lh3.googleusercontent.com/imnFYDbe7b7awcwXPwrWP0YMiJr57nuTToO2PqgK5ikF4zu8VxaxH_B1EbvB0NIEfl_n98A-TRQQd5cmsz1sIB6tmENptq5kpwO107GPRcL_WmXmWg=w2400-rj'

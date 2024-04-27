@@ -346,7 +346,7 @@ export default async function Paper(props: Props) {
           <div className={cx("operation-container")}>
             <button
               type="submit"
-              className="text-[14px]"
+              className="text-[14px] text-primary-2"
             >
               提交
             </button>

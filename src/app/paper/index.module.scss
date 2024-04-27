@@ -54,6 +54,8 @@
 
       .navbar-container {
         position: sticky;
+        min-width: var(--markdown-navbar-min-width);
+        padding-right: var(--markdown-navbar-padding-right);
         top: 36px;
         border: 1px solid var(--light-grey);
         height: fit-content;
@@ -81,7 +83,7 @@
         }
 
         &:hover {
-          color: var(--primary-4);
+          color: var(--primary);
 
           .link-icon {
             opacity: 1;
@@ -154,7 +156,7 @@
 
 
         .header--active {
-          background-color: var(--primary-5);
+          background-color: var(--violet);
         }
 
         .header {
@@ -165,12 +167,12 @@
           font-size: 12px;
 
           .user {
-            color: var(--primary-1);
+            color: var(--black);
             font-weight: 500;
           }
 
           .user--author {
-            color: var(--primary-4);
+            color: var(--primary);
           }
 
           .date {
@@ -191,7 +193,7 @@
         }
 
         .reply-link:hover {
-          color: var(--primary-4);
+          color: var(--primary);
         }
       }
     }
@@ -250,7 +252,7 @@
 
 
       button:hover {
-        color: var(--primary-4)
+        color: var(--primary)
       }
     }
   }

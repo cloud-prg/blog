@@ -32,13 +32,13 @@
 
                     .date-link:hover {
                         text-decoration: underline;
-                        color: var(--primary-4);
+                        color: var(--primary);
                     }
 
 
                     &:hover {
                         border-left-width: 8px;
-                        border-color: var(--primary-4);
+                        border-color: var(--primary);
                     }
                 }
             }

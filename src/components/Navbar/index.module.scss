@@ -1,11 +1,23 @@
 .navbar {
-    margin-top: 12px;
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
     display: flex;
     align-items: start;
     justify-content: space-between;
+    // background-color: var(--primary-2);
+    // color: white;
+    padding-inline: 10%;
+    height: var(--navbar-height);
+    border-bottom: 1px solid var(--light-grey);
+    // background: url('https://lh3.googleusercontent.com/imnFYDbe7b7awcwXPwrWP0YMiJr57nuTToO2PqgK5ikF4zu8VxaxH_B1EbvB0NIEfl_n98A-TRQQd5cmsz1sIB6tmENptq5kpwO107GPRcL_WmXmWg=w2400-rj') no-repeat;
+    // background-color: var(--primary-2);
+    // clip-path: polygon(0 0, 10% 0, 0 100%);
+}
+
+.left-part,
+.right-part {
+    height: 100%;
 }
 
 .left-part {
@@ -17,7 +29,7 @@
 
     .logo {
         font-size: 24px;
-        color: var(--primary-2);
+        // color: var(--primary-2);
         font-style: italic;
         cursor: pointer;
 
@@ -43,15 +55,15 @@
         display: flex;
         align-items: center;
         gap: 20px;
+
         .item {
             cursor: pointer;
             font-size: 16px;
-            padding-bottom: 4px;
             border-bottom: 1px solid transparent;
 
             &:hover {
-                color: var(--primary-4);
-                border-color: var(--primary-4);
+                color: var(--primary-2);
+                border-color: var(--primary-2);
             }
         }
     }
@@ -59,18 +71,31 @@
     .search-input {
         border: none;
         width: var(--search-width);
-        border-radius: 0;
+        border-radius: 4px;
         background-color: var(--light-grey);
-        color: var(--primary-2);
 
-        .search-icon {
+        // color: var(--primary-2);
+        * {
+            user-select: none;
+
+        }
+
+        .input-suffix {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            border-radius: 0 4px 4px 0;
             justify-content: center;
             background-color: var(--primary-2);
             color: white;
-            height: 100%;
             height: 40px;
-            padding-block: 0;
-            width: 40px;
+            padding-inline: 8px;
+            cursor: pointer;
+
+            &:hover {
+                filter: brightness(1.05);
+            }
         }
     }
 }

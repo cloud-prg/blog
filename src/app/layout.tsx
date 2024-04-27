@@ -7,6 +7,8 @@ import styles from './page.module.scss'
 import classNames from 'classnames/bind';
 import { defaultSeoConfig } from '@/constant/seo';
 import { Metadata } from 'next';
+import BgSvg from '@/assets/svg/bg.svg'
+
 const cx = classNames.bind(styles);
 
 export const metadata: Metadata = {
@@ -21,9 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cx('layout')}>
-        <div className='w-full px-[10%]'><Navbar /></div>
-        <div className='w-full mb-[8px] border-t border-light-grey' />
-        <div className='w-full px-[10%]'>{children}</div>
+        <Navbar />
+        <div className={cx('layout-content')} 
+        style={{
+          background: `url(${BgSvg.src})`,
+        }}
+        >
+          {children}</div>
         <Footer />
       </body>
     </html>

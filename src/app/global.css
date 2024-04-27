@@ -3,22 +3,27 @@
 @tailwind utilities;
 
 :root {
-  --primary-1: #000000;
-  --primary-2: #474747;
-  --primary-3: rgb(196, 47, 13);
-  --primary-4: #163bbf;
-  --primary-5: #deddff;
+  --primary: #254ea4;
+  --primary-2: rgb(39, 111, 177);
+  --title-bg: #00AFF210;
+  --button-primary: #95A5A6;
+
+  --violet: #deddff;
   --white: #FFFFFF;
+  --grey: #DFDFDF;
   --light-grey: #F4F4F4;
   --dark-grey: #777777;
-  --grey: #DFDFDF;
   --error: #891900;
+  --light-black: #474747;
   --black: #000000;
 
+  --navbar-height: 72px;
+  --footer-height: 72px;
   --sidebar-width: 256px;
-  --search-width: 256px;
-  --markdown-navbar-width: 256px;
-  --main-sidebar-gap: 24px;
+  --search-width: var(--sidebar-width);
+  --markdown-navbar-padding-right: 16px;
+  --markdown-navbar-min-width: var(--sidebar-width);
+  --main-sidebar-gap: 32px;
 }
 
 html {
@@ -49,7 +54,8 @@ pre {
   margin: 0;
 }
 
-p,li {
+p,
+li {
   font-size: 1.05rem;
 }
 
@@ -159,12 +165,15 @@ p,li {
     margin: .1em 0
   }
 
-  ul,ol {
+  ul,
+  ol {
     padding-bottom: 0;
-    li+li{
+
+    li+li {
       margin-top: 0;
     }
-    li{
+
+    li {
       margin-top: 4px !important;
     }
   }

@@ -12,9 +12,10 @@ import service from 'src/service';
 import { PAGE, PAGE_SIZE } from '@/constant/books';
 
 import classNames from 'classnames/bind';
-import { HOME_PAGE_SIZE } from '@/constant/home';
+import { HOME_PAGE_SIZE, emailUrl, githubUrl } from '@/constant/home';
 import { homeSeoConfig } from '@/constant/seo';
 import { Metadata, ResolvingMetadata } from 'next';
+import { GithubOutlined, InfoCircleOutlined, MailOutlined, RightOutlined } from '@ant-design/icons';
 const cx = classNames.bind(styles);
 
 export const metadata: Metadata = {
@@ -37,15 +38,17 @@ const Main = async () => {
 
     return (
       <div className={cx('main')}>
-        <div className={cx("title")}>最新文章</div>
+        <div className={cx("title")}>📔 最新文章</div>
         <PaperList dataSource={dataSource} />
         {
           countTotal > HOME_PAGE_SIZE &&
           <Link
-            className="text-primary-4 underline"
+            className={`${cx('more')} mt-[16px]`}
             href={`/books/?page=${PAGE}&pageSize=${PAGE_SIZE}`}
           >
-            更多内容...
+            阅读更多
+            {/* @ts-ignore */}
+            <RightOutlined />
           </Link>
         }
       </div>
@@ -65,51 +68,48 @@ const Sidebar = async () => {
   return (
     <div className={cx('sidebar')}>
       {/* 关于作者 */}
-      <div className={cx("item")}>
+      {/* <div className={cx("item")}>
         <span className={cx('title')}>关于作者</span>
         <div className={cx('content')}>
           <span>cs专业21届本科生，毕业后从事于前端开发至今。技术栈上熟悉vue2/3,nextjs,nestjs、docker&jenkins CI&CD、工程化等。关注业界前沿，乐于踩坑并分享经验。</span>
           <Link className='text-right text-primary-4 underline' href="/about">了解更多...</Link>
         </div>
-      </div>
+      </div> */}
 
+      {/* 联系我 */}
+      {/* <div className={cx("item")}>
+        <span className={cx('title')}>📮 联系方式</span>
+       
+      </div> */}
       <div className={cx("item")}>
-        <span className={cx('title')}>联系方式</span>
-        <ul>
-          <li>
-            <Link className="text-primary-4" href="/email.svg" target="_blank">
-              email
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="text-primary-4 underline"
-              href="https://github.com/cloud-prg"
-              target="_blank"
-            >
-              github
-            </Link>
-          </li>
-        </ul>
+        <span className={cx('title')}>
+          ℹ️ 小站信息
+        </span>
+        <div className={cx('content')}>
+          <span>记录包括但不限于前端的技术知识，偶尔分享生活感悟，欢迎交流。</span>
+          <Link
+            className={`${cx('more')} mt-[12px]`}
+            href="/about">了解更多</Link>
+        </div>
       </div>
 
       {/* 文章分类 */}
       <div className={cx("item")}>
-        <span className={cx('title')}>文章分类</span>
-        <ul>
+        <span className={cx('title')}>📚 文章分类</span>
+        <div className={cx('tags')}>
           {categories.map(({ label, count }) => {
             return (
-              <li key={label}>
-                <Link
-                  className="hover:text-primary-4"
-                  href={`/books/?label=${label}&page=${1}&pageSize=${PAGE_SIZE}`}
-                >
-                  {`${label}(${count})`}
-                </Link>
-              </li>
+              <Link
+                key={label}
+                className={cx('tag')}
+                // className="hover:text-primary-4"
+                href={`/books/?label=${label}&page=${1}&pageSize=${PAGE_SIZE}`}
+              >
+                {`${label}(${count})`}
+              </Link>
             );
           })}
-        </ul>
+        </div>
       </div>
     </div>
   );

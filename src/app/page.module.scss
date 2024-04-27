@@ -4,16 +4,23 @@
     display: flex;
     flex-direction: column;
 
+    .layout-content {
+        width: 100%;
+        padding-top: 16px;
+        padding-inline: 10%;
+        min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
+        position: relative;
+    }
+
     .home {
         height: 100%;
         width: 100%;
-        padding-top: 12px;
         display: flex;
         gap: var(--main-sidebar-gap);
 
         .main {
             flex: 1;
-            gap: 20px;
+            // gap: 20px;
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -21,6 +28,15 @@
             .title {
                 font-weight: bold;
                 font-size: 24px;
+            }
+
+            .more {
+                color: var(--primary-2);
+                width: fit-content;
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
 
@@ -31,24 +47,53 @@
             height: fit-content;
 
             .item {
-                // border:1px solid var(--light-grey);
-                background-color: var(--light-grey);
+                // background-color: var(--light-grey);
                 border-radius: 2px;
                 display: flex;
                 flex-direction: column;
                 gap: 12px;
                 padding-bottom: 4px;
-                margin-bottom: 16px;
+                margin-bottom: 24px;
 
                 .title {
-                    padding-left: 8px;
-                    size: 16px;
-                    background-color: var(--primary-2);
-                    color: white;
+                    font-size: 20px;
+                    font-weight: 500;
+                    padding-bottom: 4px;
+                    border-bottom: 1px solid var(--grey);
                 }
 
-                .content{
-                    padding-inline: 24px;
+            
+
+                .tags {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 12px;
+
+                    .tag {
+                        border: 1px solid var(--light-black);
+                        color: var(--light-black);
+                        padding: 4px 12px;
+                        border-radius: 8px;
+                        cursor: pointer;
+
+                        &:hover {
+                            color: var(--primary);
+                            border-color: var(--primary);
+                        }
+                    }
+                }
+
+                .more {
+                    color: var(--primary-2);
+                    margin-left: auto;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                .content {
+                    // padding-inline: 24px;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;

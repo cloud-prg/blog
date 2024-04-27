@@ -64,14 +64,16 @@ const Navbar = () => {
             const value = e?.target?.value;
             setSearchText(value);
           }}
-          placeholder="搜索"
+          placeholder="请输入"
           onPressEnter={handleClick}
           suffix={
-            // @ts-ignore
-            <SearchOutlined
-              className={cx("search-icon")}
-              onClick={handleClick}
-            />
+            <div className={cx("input-suffix")}>
+              {/* @ts-ignore */}
+              <SearchOutlined
+                onClick={handleClick}
+              />
+              搜索
+            </div>
           }
         />
       </div>
