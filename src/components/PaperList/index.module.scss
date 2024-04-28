@@ -1,5 +1,5 @@
 .paper-list {
-    --item-height: 110px;
+    --item-height: 100px;
     --item-labels-width: 320px;
 
     display: flex;
@@ -52,6 +52,4 @@
     .item+.item {
         border-top: 1px solid var(--grey);
     }
-
-
 }

@@ -21,8 +21,8 @@
   --footer-height: 72px;
   --sidebar-width: 256px;
   --search-width: var(--sidebar-width);
-  --markdown-navbar-padding-right: 16px;
-  --markdown-navbar-min-width: var(--sidebar-width);
+  --markdown-navbar-padding-right: 24px;
+  --markdown-navbar-width: var(--sidebar-width);
   --main-sidebar-gap: 32px;
 }
 
@@ -151,13 +151,13 @@ li {
   }
 
   h1 {
-    font-size: 2em;
-    margin: .2em 0
+    font-size: 1.5em;
+    margin: .15em 0
   }
 
   h2 {
-    font-size: 1.5em;
-    margin: .15em 0
+    font-size: 1.3em;
+    margin: .13em 0
   }
 
   h3 {
@@ -188,7 +188,9 @@ li {
   dl,
   dir,
   menu {
-    margin: 1.12em 0;
+    /* margin: 1.12em 0; */
+    font-size: 1em;
+    margin: .82em 0;
   }
 
   h5 {

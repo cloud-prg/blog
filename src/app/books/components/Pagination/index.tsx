@@ -41,7 +41,7 @@ const Pagination: React.FC<IProps> = (props) => {
     let ellipsisLeft = false
     let ellipsisRight = false
     return (
-        <div className="p-2 flex justify-between items-center">
+        <div className="text-[20px] p-2 flex justify-between items-center">
             {previousPage > 0 && <a className={cx('side-link')} href={`?${objToQuery({ ...queryParams, page: previousPage, pageSize })}`}>{`<`}</a>}
             <div className="mx-[16px] flex items-center gap-[6px]">
                 {totalPages > 0 && new Array(totalPages).fill(null).map((_, index) => {

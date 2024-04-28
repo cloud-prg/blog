@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
 import Image from 'next/image';
+import EmptySvg from 'src/assets/svg/empty.svg';
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 // import { mockCommentList, mockPaper } from 'src/constant/paper';
@@ -209,7 +210,14 @@ export default async function Paper(props: Props) {
               remarkPlugins={[remarkGfm]}
               components={{
                 img: ({ children, ...props }) => {
-                  return <Image className='mx-auto' src={props.src} alt={props.src} />
+                  return <Image className={cx('markdown-img')} src={props.src} alt={props.src}
+                    width={800} height={600}
+                  />
+                },
+                a: ({ children, ...props }) => {
+                  const { href } = props as any;
+                  const { value } = props.node.children[0] as any;
+                  return <Link className={cx('markdown-link')} href={href}>{value}</Link>
                 },
                 h1: ({ children, ...props }) => {
                   const { value } = props.node.children[0] as any;
@@ -302,7 +310,9 @@ export default async function Paper(props: Props) {
         </span>
 
         <div className="w-full">
-          {!comment.length && <Empty className='flex flex-col items-center justify-center h-[200px]' description={'暂无评论'} />}
+          {!comment.length && <Empty
+            image={EmptySvg.src}
+            className='flex flex-col items-center justify-center h-[200px]' description={'暂无评论'} />}
 
           {comment.map((item: commentProps, index) => {
             return <Comment key={item.id} index={index} {...item} />;

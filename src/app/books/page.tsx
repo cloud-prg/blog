@@ -11,6 +11,8 @@ import { PAGE_SIZE } from '@/constant/books';
 import Pagination from './components/Pagination'
 import React from 'react';
 
+import EmptySvg from 'src/assets/svg/empty.svg';
+
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
@@ -73,12 +75,13 @@ const Books = async ({
                         imageStyle={{
                             height: 200,
                         }}
+                        image={EmptySvg}
                         description={<span className='text-[16px]'>暂无文章数据</span>} />
                 )}
 
                 {/* Pagination */}
                 {(dataSource!?.total / pageSize) > 1 &&
-                    <div className="flex pb-[32px] justify-center">
+                    <div className="flex pt-[12px] justify-center">
                         <Pagination
                             total={dataSource!?.total}
                             pageSize={+pageSize}

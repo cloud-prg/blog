@@ -3,6 +3,9 @@
     flex-direction: column;
     gap: 4px;
     width: var(--markdown-navbar-width);
+    padding-right: var(--markdown-navbar-padding-right);
+    border: 1px solid var(--light-grey);
+    box-shadow: 0 0 4px 4px var(--light-grey);
 
     ul{
         list-style: none !important;

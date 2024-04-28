@@ -20,3 +20,6 @@
 
 ## Bug 6:
 - `position: sticky`在mdn上说明会粘性至距离最近且`overflow`为 auto hidden scroll的祖先元素。但除此之外，还必须满足目标元素的高度小于父元素高度才行。
+
+## Bug 7:
+- 无意间发现seo配置百度收录的meta信息是不行的。必须手动在head标签内部添加meta信息才能在网页中生效。
