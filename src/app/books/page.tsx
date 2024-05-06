@@ -7,28 +7,36 @@ import { createQueryString } from '@/utils/index';
 import { Suspense, useEffect, useState } from 'react';
 import service from 'src/service';
 import { paginationDataSourceProps, queryItemProps } from '@/type/books';
-import { PAGE_SIZE } from '@/constant/books';
+import { MAX_PAGE_SIZE, MIN_PAGE_SIZE, PAGE_SIZE } from '@/constant/books';
 import Pagination from './components/Pagination'
 import React from 'react';
 
-import EmptySvg from 'src/assets/svg/empty.svg';
+import EmptySvg from '@/assets/svg/empty.svg';
 
 import styles from './index.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
+type searchParamsProps = Partial<{
+    page: string;
+    pageSize: number | string | undefined;
+    label: string | undefined;
+    searchValue: string | undefined;
+}>
+
 const Books = async ({
     searchParams,
 }: {
     params: { slug: string }
-    searchParams: { [key: string]: string | string[] | undefined }
+    searchParams: searchParamsProps
 }) => {
     // const pathname = usePathname();
     // const router = useRouter();
 
     // const { page, pageSize, label, searchValue } = searchParams;
-    const { page, label, searchValue } = searchParams;
-    const pageSize = PAGE_SIZE;
+    const { page: strPage, pageSize: strPageSize, label, searchValue } = searchParams;
+    const page = +strPage;
+    const pageSize = +strPageSize > MAX_PAGE_SIZE ? MAX_PAGE_SIZE : Math.max(MIN_PAGE_SIZE, +strPageSize);
 
     if (!page || !pageSize) {
         notFound();
@@ -38,8 +46,8 @@ const Books = async ({
     let dataSource: paginationDataSourceProps | Record<string, any> = {};
     const fetchDataSource = async () => {
         const params = {
-            page: +page,
-            pageSize: +pageSize,
+            page: page,
+            pageSize: pageSize,
         };
 
         if (searchValue) {
@@ -71,11 +79,10 @@ const Books = async ({
                     </>
                 ) : (
                     <Empty
-                        className='flex flex-col items-center justify-center w-full h-full'
-                        imageStyle={{
-                            height: 200,
-                        }}
-                        image={EmptySvg}
+                        className='flex flex-col items-center justify-center w-full'
+                        style={{ height: 'var(--content-height)' }}
+                        imageStyle={{ height: 200 }}
+                        image={EmptySvg.src}
                         description={<span className='text-[16px]'>暂无文章数据</span>} />
                 )}
 
@@ -84,7 +91,7 @@ const Books = async ({
                     <div className="flex pt-[12px] justify-center">
                         <Pagination
                             total={dataSource!?.total}
-                            pageSize={+pageSize}
+                            pageSize={pageSize}
                             currentPage={+page}
                             queryParams={searchParams}
                         />

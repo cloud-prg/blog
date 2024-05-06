@@ -17,7 +17,7 @@ const Navbar = () => {
   const router = useRouter();
   const handleClick = () => {
     router.push(
-      `/books/?searchValue=${searchText}&page=${PAGE}&pageSize=${PAGE_SIZE}`
+      `/books/?page=${PAGE}&pageSize=${PAGE_SIZE}&searchValue=${searchText}`
     );
     setSearchText('');
   };
