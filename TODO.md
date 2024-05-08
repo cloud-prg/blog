@@ -2,4 +2,4 @@
 - [x] paper ui
 - [x] book ui
 - [x] home ui
-- [ ] seo
+- [x] seo
