@@ -65,11 +65,14 @@ const Books = async ({
 
     return (
         <div className={cx("book")}>
-            {label && (
+            {(label) && (
                 <div className={cx('result-wrap')}>
-                    搜索
-                    <span className={cx('label')}>{label}</span>
-                    的结果:
+                    与<span className={cx('label')}>{label}</span>相关的文章:
+                </div>
+            )}
+            {(searchValue) && (
+                <div className={cx('result-wrap')}>
+                    搜索<span className={cx('text')}>{searchValue}</span>的结果:
                 </div>
             )}
             <div className={cx('content')}>
