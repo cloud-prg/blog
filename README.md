@@ -20,5 +20,4 @@ git commit -m 'your commit message'
 ```
 
 ## 线上地址
-- [http://blog.cloudprg.cn](http://blog.cloudprg.cn)
-- [http://www.jiujiuwarehouse.com:3005](http://www.jiujiuwarehouse.com:3005)
+[https://blog.cloudprg.cn](https://blog.cloudprg.cn)
