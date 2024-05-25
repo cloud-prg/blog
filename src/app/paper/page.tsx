@@ -141,19 +141,18 @@ export default async function Paper(props: Props) {
     );
   };
 
+  const UserDom = (props: { user: string })=>{
+    const { user } = props;
+    const [origin, target] = user.split('回复至');
+    if(user?.includes('回复至')){
+      return <span>{origin} <span className='text-midnight'>回复至</span> {target}</span>
+    }
+    return <span>{user}</span>
+  };
+  
   const Reply = (props: replyProps) => {
     const { id, parentId, user, text, createdAt, author = false } = props;
     const time = formatDate(createdAt);
-    
-    let UserDom = ()=>{
-      return <span>{user}</span>
-    };
-    if(user?.includes('回复至')){
-      const [origin, target] = user.split('回复至');
-      UserDom = ()=>{
-        return <span>{origin} <span className='text-midnight'>回复至</span> {target}</span>
-      };
-    }
 
     return (
       <div id={`reply-${id}`} className={cx('reply')}>
@@ -163,7 +162,7 @@ export default async function Paper(props: Props) {
         </div>
         <div className={cx("text-region")}>
           <div className={cx('header', id == searchReplyId && 'header--active')}>
-            <span className={cx('user', author && 'user--author')}>{author ? '[博主]' : <UserDom />}</span>
+            <span className={cx('user', author && 'user--author')}>{author ? '[博主]' : <UserDom user={user} />}</span>
             <span className={cx('date')}>{time}</span>
           </div>
           <span className={cx("text")}>{text}</span>
