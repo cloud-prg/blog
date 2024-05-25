@@ -67,15 +67,24 @@ export async function generateMetadata(
   }
 }
 
+
 export default async function Paper(props: Props) {
   const { searchParams } = props;
   const { id: searchId,
     commentId: searchCommentId,
     replyId: searchReplyId,
-    replyTarget: searchReplyTarget,
-    commentTarget: searchCommentTarget
+    replyTarget,
+    commentTarget
   } = searchParams;
-  const userDefaultValue: string = searchReplyId ? `[用户名] 回复至 [${searchReplyTarget}]@${searchReplyId}` : "";
+
+  const filterTarget = (target)=>{
+    return target?.includes('回复至') ? target?.split('回复至')[0] :target;
+  }
+
+  const searchReplyTarget = filterTarget(replyTarget);
+  const searchCommentTarget = filterTarget(commentTarget);
+
+  const userDefaultValue: string = searchReplyId ? `_你的用户名_ 回复至 ${filterTarget(searchReplyTarget)}@${searchReplyId}` : "";
 
   if (!searchId) {
     notFound();
@@ -135,6 +144,12 @@ export default async function Paper(props: Props) {
   const Reply = (props: replyProps) => {
     const { id, parentId, user, text, createdAt, author = false } = props;
     const time = formatDate(createdAt);
+    
+    let UserDom = ()=><span>{user}</span>;
+    if(user?.includes('回复至')){
+      const [origin, target] = user.split('回复至');
+      UserDom = ()=><span>{origin} <span className='text-midnight'>回复至</span> {target}</span>;
+    }
 
     return (
       <div id={`reply-${id}`} className={cx('reply')}>
@@ -144,7 +159,7 @@ export default async function Paper(props: Props) {
         </div>
         <div className={cx("text-region")}>
           <div className={cx('header', id == searchReplyId && 'header--active')}>
-            <span className={cx('user', author && 'user--author')}>{author ? '[博主]' : user}</span>
+            <span className={cx('user', author && 'user--author')}>{author ? '[博主]' : <UserDom />}</span>
             <span className={cx('date')}>{time}</span>
           </div>
           <span className={cx("text")}>{text}</span>

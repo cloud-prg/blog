@@ -23,7 +23,7 @@ const config: Config = {
         'dark-grey': '#777777',
         'white': '#ffffff',
         'purple': '#3f3cbb',
-        'midnight': '#121063',
+        'midnight': '#121490',
         'metal': '#565584',
         'tahiti': '#3ab7bf',
         'silver': '#ecebff',
