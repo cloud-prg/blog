@@ -145,10 +145,14 @@ export default async function Paper(props: Props) {
     const { id, parentId, user, text, createdAt, author = false } = props;
     const time = formatDate(createdAt);
     
-    let UserDom = ()=><span>{user}</span>;
+    let UserDom = ()=>{
+      return <span>{user}</span>
+    };
     if(user?.includes('回复至')){
       const [origin, target] = user.split('回复至');
-      UserDom = ()=><span>{origin} <span className='text-midnight'>回复至</span> {target}</span>;
+      UserDom = ()=>{
+        return <span>{origin} <span className='text-midnight'>回复至</span> {target}</span>
+      };
     }
 
     return (
