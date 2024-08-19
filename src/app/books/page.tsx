@@ -82,7 +82,7 @@ const Books = async ({
                     </>
                 ) : (
                     <Empty
-                        className='flex flex-col items-center justify-center w-full'
+                        className="flex flex-col items-center justify-center w-full"
                         style={{ height: 'var(--content-height)' }}
                         imageStyle={{ height: 200 }}
                         image={EmptySvg.src}
@@ -91,7 +91,7 @@ const Books = async ({
 
                 {/* Pagination */}
                 {(dataSource!?.total / pageSize) > 1 &&
-                    <div className="flex pt-[12px] justify-center">
+                    <div className="flex flex-col items-center justify-center w-full">
                         <Pagination
                             total={dataSource!?.total}
                             pageSize={pageSize}
