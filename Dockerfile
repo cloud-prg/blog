@@ -1,4 +1,4 @@
-FROM node:20-alpine as build-stage
+FROM registry.cn-hangzhou.aliyuncs.com/cloud_prg_hub/node:20-alpine as build-stage
 
 WORKDIR /app
 
