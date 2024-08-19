@@ -1,10 +1,9 @@
 FROM registry.cn-hangzhou.aliyuncs.com/cloud_prg_hub/node:20-alpine as build-stage
 
-WORKDIR /app
-
-COPY ./.next/standalone ./.next/standalone
-COPY ./.next/static ./.next/standalone/.next/static
-COPY ./public ./.next/standalone/public
+# WORKDIR /app
+COPY  ./.next/standalone ./.next/standalone
+COPY  ./.next/static ./.next/standalone/.next/static
+COPY  ./public ./.next/standalone/public
 
 EXPOSE 3000
 

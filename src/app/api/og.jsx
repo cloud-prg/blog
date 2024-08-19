@@ -21,5 +21,3 @@ export default function () {
     )
   )
 }
-
-export async function GET

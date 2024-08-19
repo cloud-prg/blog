@@ -1,5 +1,13 @@
-version=v0.0.1
-tag=cloudprg/blog:${version}
+username=yunshangzhou98
+password=Lihuazou123!
+hub_url=registry.cn-hangzhou.aliyuncs.com
+instance_name=cloud_prg_hub
+
+docker login --username=$username --password=$password $hub_url
+
+version=v0.0.2
+tag_prefix=$hub_url/$instance_name
+tag=$tag_prefix/blog:${version}
 platform=linux/amd64
 
 echo "开始打包${tag}"
